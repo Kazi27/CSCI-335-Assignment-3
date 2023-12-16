@@ -1,36 +1,38 @@
-#ifndef NEAREST_NEIGHBOR_HPP
-#define NEAREST_NEIGHBOR_HPP
+//Name: Kazi Sameen Anwar
+//CSCI - 335 Assignment 3
+#ifndef NEARESTNEIGHBOR_HPP
+#define NEARESTNEIGHBOR_HPP //like we learned in 260 these are include guards that the precompiler processes
 
-#include <vector>
 #include <string>
+#include <vector>
+#include <iostream> //input output 
+#include <fstream> //for reading the file
+#include <cmath> //math stuff
+#include <ctime> //to time
+#include <limits>
+#include <sstream>  //sstream for iss
 
-class NearestNeighbor {
-public:
-    NearestNeighbor(const std::string& filename);
-
-    // Function to perform the Nearest Neighbor algorithm
-    void nearestNeighbor();
-
-private:
-    // Node structure to represent cities
-    struct Node {
+class Node //so this class is ur point with an id and x and y coords
+{
+    public:
         int id;
-        double x, y; // Coordinates of the city
-        bool visited;
-    };
+        double x, y;
 
-    // Function to calculate the distance between two cities
-    double calculateDistance(const Node& city1, const Node& city2);
-
-    // Function to find the nearest unvisited city
-    Node* findNearestCity(Node& currentCity);
-
-    // Function to print the tour details
-    void printTour();
-
-    std::vector<Node> cities; // Vector to store information about cities
-    std::vector<Node*> tour;  // Vector to store the tour order
-    double totalDistance;     // Total distance traveled
+        Node(int id, double x, double y); //constructor
+        double distance(const Node& other) const; //this is the distance calculator
 };
 
-#endif // NEAREST_NEIGHBOR_HPP
+class NearestNeighbor 
+{
+    public:
+        NearestNeighbor(const std::string& filename); //reads in a filename to make an instance of that
+        void nearestNeighborAlgorithm(); //does the actual implementation of the algo
+        void printResult(); //prints duh
+
+    private:
+        std::vector<Node> nodes; //ur priv data members
+        std::vector<int> tour; //vector to store the order of visited nodes
+        double totalDistance;
+};
+
+#endif // NEARESTNEIGHBOR_HPP
