@@ -36,7 +36,7 @@ void nearestNeighbor(const std::string filename)
     }
 
     std::vector<Node> nodesVect; //vect to store node objs
-    std::string line; ////will store each line
+    std::string line; //will store each line
     int id;
     double x, y;
 
@@ -109,7 +109,7 @@ void nearestNeighbor(const std::string filename)
         std::cout << nodeId << " ";
     }
     int duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    std::cout << "\nTotal Distance: " << totalDist << "\n" << "Execution Time: " << duration << " milliseconds\n";
+    std::cout << std::endl << "Total Distance: " << totalDist << std::endl << "Execution Time: " << duration << " milliseconds" std::endl;
 }
 #endif
 
