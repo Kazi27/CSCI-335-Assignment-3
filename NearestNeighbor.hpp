@@ -57,24 +57,24 @@ void nearestNeighbor(const std::string filename)
         return;
     }
 
-    std::vector<bool> visited(nodesVect.size(), false); //vect to track visited nodes
-    std::vector<int> path;                          //vector to store path of VISITED nodes
+    std::vector<bool> visitedVect(nodesVect.size(), false); //vect to track visited nodes
+    std::vector<int> tourVect;                          //vector to store path of VISITED nodes
     double totalDistance = 0.0;                    //total distance of the path
 
     auto startTime = std::chrono::steady_clock::now(); //no need to epxlain
 
     int current = 0;              //keep track of the current node
-    path.push_back(nodesVect[current].id); //add starting node to path
-    visited[current] = true;       //mark da starting node visited
+    tourVect.push_back(nodesVect[current].id); //add starting node to path
+    visitedVect[current] = true;       //mark da starting node visited
 
-    while (path.size() < nodesVect.size()) //construct path by finding nearest neighbor for each node
+    while (tourVect.size() < nodesVect.size()) //construct path by finding nearest neighbor for each node
     {
         double nearestDistance = std::numeric_limits<double>::max(); //initialize variable to max value
         int nearestNode = -1;  //-1 stored into nearestNode
 
         for (size_t j = 0; j < nodesVect.size(); ++j) //iterate thru and find nearest unvisited node
         {
-            if (!visited[j]) //if u havent visited this node before
+            if (!visitedVect[j]) //if u havent visited this node before
             {
                 double distance = nodesVect[current].distance(nodesVect[j]); //calc ur distance
                 if (distance < nearestDistance) //if this distance is smaller than the distance u have rn, initially distance set to inifintiy according to vid btw
@@ -91,19 +91,19 @@ void nearestNeighbor(const std::string filename)
             return;
         }
 
-        visited[nearestNode] = true;  //mark nearest node visited
-        path.push_back(nodesVect[nearestNode].id); //add nearest neighbor to the tour
+        visitedVect[nearestNode] = true;  //mark nearest node visited
+        tourVect.push_back(nodesVect[nearestNode].id); //add nearest neighbor to the tour
         totalDistance += nearestDistance;    //add up all distance
         current = nearestNode;    //update current node for the next iter
     }
 
     totalDistance += nodesVect[current].distance(nodesVect[0]); //update distance travelled
-    path.push_back(nodesVect[0].id);   //add node to tour
+    tourVect.push_back(nodesVect[0].id);   //add node to tour
 
     auto endTime = std::chrono::steady_clock::now(); //SIMPLE 
 
    //jus printing 
-    for (const auto &nodeId : path)
+    for (const auto &nodeId : tourVect)
     {
         std::cout << nodeId << " ";
     }
