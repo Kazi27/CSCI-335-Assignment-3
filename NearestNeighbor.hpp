@@ -5,10 +5,10 @@
 
 #include <string>
 #include <vector>
-#include <iostream> // Input and output operations
-#include <fstream>  // File stream operations
-#include <cmath>    // Math operations
-#include <ctime>    // Time operations
+#include <iostream> //input output 
+#include <fstream>  //for reading the file
+#include <cmath> //math stuff
+#include <ctime>  //to time
 #include <limits>
 #include <chrono>
 #include <sstream>
@@ -35,7 +35,7 @@ void nearestNeighbor(const std::string filename)
         return;
     }
 
-    std::vector<Node> nodes; //vect to store node objs
+    std::vector<Node> nodesVect; //vect to store node objs
     std::string line; //will store each line
     int id;
     double x, y;
@@ -48,35 +48,35 @@ void nearestNeighbor(const std::string filename)
         {
             continue;
         }
-        nodes.emplace_back(id, x, y); //this is from stack overflow and it abscially add elements to the end of a container so for us node objects at the end of the vector
+        nodesVect.emplace_back(id, x, y); //this is from stack overflow and it abscially add elements to the end of a container so for us node objects at the end of the vector
     }
 
-    if (nodes.empty())
+    if (nodesVect.empty())
     {
         std::cout << "No nodes.\n"; //read file line by line and fill up the  vector
         return;
     }
 
-    std::vector<bool> visited(nodes.size(), false); //vect to track visited nodes
+    std::vector<bool> visited(nodesVect.size(), false); //vect to track visited nodes
     std::vector<int> path;                          //vector to store path of VISITED nodes
     double totalDistance = 0.0;                    //total distance of the path
 
     auto startTime = std::chrono::steady_clock::now(); //no need to epxlain
 
     int current = 0;              //keep track of the current node
-    path.push_back(nodes[current].id); //add starting node to path
+    path.push_back(nodesVect[current].id); //add starting node to path
     visited[current] = true;       //mark da starting node visited
 
-    while (path.size() < nodes.size()) //construct path by finding nearest neighbor for each node
+    while (path.size() < nodesVect.size()) //construct path by finding nearest neighbor for each node
     {
         double nearestDistance = std::numeric_limits<double>::max(); //initialize variable to max value
         int nearestNode = -1;  //-1 stored into nearestNode
 
-        for (size_t j = 0; j < nodes.size(); ++j) //iterate thru and find nearest unvisited node
+        for (size_t j = 0; j < nodesVect.size(); ++j) //iterate thru and find nearest unvisited node
         {
             if (!visited[j]) //if u havent visited this node before
             {
-                double distance = nodes[current].distance(nodes[j]); //calc ur distance
+                double distance = nodesVect[current].distance(nodesVect[j]); //calc ur distance
                 if (distance < nearestDistance) //if this distance is smaller than the distance u have rn, initially distance set to inifintiy according to vid btw
                 {
                     nearestDistance = distance; //update dat
@@ -92,13 +92,13 @@ void nearestNeighbor(const std::string filename)
         }
 
         visited[nearestNode] = true;  //mark nearest node visited
-        path.push_back(nodes[nearestNode].id); //add nearest neighbor to the tour
+        path.push_back(nodesVect[nearestNode].id); //add nearest neighbor to the tour
         totalDistance += nearestDistance;    //add up all distance
         current = nearestNode;    //update current node for the next iter
     }
 
-    totalDistance += nodes[current].distance(nodes[0]); //update distance travelled
-    path.push_back(nodes[0].id);   //add node to tour
+    totalDistance += nodesVect[current].distance(nodesVect[0]); //update distance travelled
+    path.push_back(nodesVect[0].id);   //add node to tour
 
     auto endTime = std::chrono::steady_clock::now(); //SIMPLE 
 
