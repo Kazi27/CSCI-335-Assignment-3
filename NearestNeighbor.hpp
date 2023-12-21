@@ -1,7 +1,7 @@
 // Name: Kazi Sameen Anwar
 // CSCI - 335 Assignment 3
-#ifndef NEARESTNEIGHBOR_HPP
-#define NEARESTNEIGHBOR_HPP //like we learned in 260 these are include guards that the precompiler processes
+// #ifndef NEARESTNEIGHBOR_HPP
+// #define NEARESTNEIGHBOR_HPP //like we learned in 260 these are include guards that the precompiler processes
 
 #include <string>
 #include <vector>
@@ -110,7 +110,7 @@ void nearestNeighbor(const std::string filename)
     int duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     std::cout << "\nTotal Distance: " << totalDist << "\n" << "Execution Time: " << duration << " milliseconds\n";
 }
-#endif
+//#endif
 
 // //Name: Kazi Sameen Anwar
 // //CSCI - 335 Assignment 3
