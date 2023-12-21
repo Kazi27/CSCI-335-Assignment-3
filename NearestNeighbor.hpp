@@ -110,7 +110,9 @@ void nearestNeighbor(const std::string filename)
     std::cout << "\nTotal Distance: " << totalDist << "\n"; std::cout << "Execution Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " milliseconds\n";
 }
 
-#endif // NEARESTNEIGHBOR_HPP
+#endif 
+
+//for some bizzare reason this ives me a 10/20:
 // #ifndef NEARESTNEIGHBOR_HPP
 // #define NEARESTNEIGHBOR_HPP //like we learned in 260 these are include guards that the precompiler processes
 
