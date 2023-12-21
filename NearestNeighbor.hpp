@@ -3,13 +3,13 @@
 // #ifndef NEARESTNEIGHBOR_HPP
 // #define NEARESTNEIGHBOR_HPP //like we learned in 260 these are include guards that the precompiler processes
 
-#include <string>
+//#include <string>
 #include <vector>
 #include <iostream> //input output 
 #include <fstream> //for reading the file
 #include <cmath> //math stuff
 #include <chrono>
-#include <ctime> //to time
+//#include <ctime> //to time
 #include <limits>
 #include <sstream>
 
@@ -108,8 +108,8 @@ void nearestNeighbor(const std::string filename)
     {
         std::cout << nodeId << " ";
     }
-    int duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    std::cout << "\nTotal Distance: " << totalDist << "\n" << "Execution Time: " << duration << " milliseconds\n";
+    //int duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    std::cout << "\nTotal Distance: " << totalDist << "\n" << "Execution Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " milliseconds\n";
 }
 //#endif
 
