@@ -59,9 +59,9 @@ void nearestNeighbor(const std::string filename)
 
     std::vector<bool> visitedVect(nodesVect.size(), false); //vect to track visited nodes
     std::vector<int> tourVect;                          //vector to store path of VISITED nodes
-    double totalDistance = 0.0;                    //total distance of the path
+    double totalDist = 0.0;                    //total distance of the path
 
-    auto startTime = std::chrono::steady_clock::now(); //no need to epxlain
+    auto start = std::chrono::steady_clock::now(); //no need to epxlain
 
     int current = 0;              //keep track of the current node
     tourVect.push_back(nodesVect[current].id); //add starting node to path
@@ -93,23 +93,23 @@ void nearestNeighbor(const std::string filename)
 
         visitedVect[nearestNode] = true;  //mark nearest node visited
         tourVect.push_back(nodesVect[nearestNode].id); //add nearest neighbor to the tour
-        totalDistance += nearestDistance;    //add up all distance
+        totalDist += nearestDistance;    //add up all distance
         current = nearestNode;    //update current node for the next iter
     }
 
-    totalDistance += nodesVect[current].distance(nodesVect[0]); //update distance travelled
+    totalDist += nodesVect[current].distance(nodesVect[0]); //update distance travelled
     tourVect.push_back(nodesVect[0].id);   //add node to tour
 
-    auto endTime = std::chrono::steady_clock::now(); //SIMPLE 
+    auto end = std::chrono::steady_clock::now(); //SIMPLE 
 
    //jus printing 
     for (const auto &nodeId : tourVect)
     {
         std::cout << nodeId << " ";
     }
-    std::cout << "\nTotal Distance: " << totalDistance << "\n";
+    std::cout << "\nTotal Distance: " << totalDist << "\n";
     std::cout << "Execution Time: "
-              << std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count()
+              << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
               << " milliseconds\n";
 }
 
