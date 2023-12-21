@@ -103,7 +103,7 @@ void nearestNeighbor(const std::string filename)
 
     //jus printing 
     std::cout << "Tour Order: ";
-    for (const auto &nodeId : tourVect)
+    for (const auto& nodeId : tourVect)
     {
         std::cout << nodeId << " ";
     }
