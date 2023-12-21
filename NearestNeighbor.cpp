@@ -1,6 +1,7 @@
 // //Name: Kazi Sameen Anwar
 // //CSCI - 335 Assignment 3
 // #include "NearestNeighbor.hpp"
+// MERGED ALL THIS INTO HPP FILE FOR GRADESCOPE
 
 // Node::Node(int id, double x, double y) : id(id), x(x), y(y) {} //instead of setting the stuff ur self, just use an initializer list fr
 
