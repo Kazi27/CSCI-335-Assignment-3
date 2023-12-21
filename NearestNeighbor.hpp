@@ -8,7 +8,7 @@
 #include <iostream> //input output 
 #include <fstream> //for reading the file
 #include <cmath> //math stuff
-#include <ctime> //to time
+//#include <ctime> //to time
 #include <limits>
 #include <sstream>
 
